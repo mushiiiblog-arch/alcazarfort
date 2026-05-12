@@ -150,7 +150,7 @@ img { max-width: 100%; display: block; }
 .navbar {
   background: #ffffff;
   border-bottom: 1px solid var(--color-border);
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 18px rgba(0,0,0,0.04);
@@ -171,7 +171,7 @@ img { max-width: 100%; display: block; }
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  line-height: 1;
+  line-height: 1.1;
 }
 .nav-logo .brand-sub {
   font-size: 0.72rem;
@@ -206,13 +206,36 @@ img { max-width: 100%; display: block; }
   border: 0;
   cursor: pointer;
   color: var(--color-primary-dark);
+  padding: 6px;
 }
 
 @media (max-width: 980px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }
-  .nav-cta .btn { display: none; }
-  .nav-cta .btn.show-mobile { display: inline-flex; }
+  /* Hide Book Now button on mobile/tablet header */
+  .nav-cta .nav-book-btn { display: none; }
+
+  /* Center logo + name vertically aligned on mobile */
+  .navbar .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+  .nav-logo img { height: 44px; width: 44px; }
+  .nav-logo .brand-name { font-size: 1.05rem; }
+  .nav-logo .brand-sub { font-size: 0.6rem; letter-spacing: 0.6px; }
+
+  .nav-cta { margin-left: auto; }
+
   .mobile-menu {
     position: absolute; left: 0; right: 0; top: 100%;
     background: #fff;
@@ -220,11 +243,13 @@ img { max-width: 100%; display: block; }
     padding: 16px 24px 24px;
     display: flex; flex-direction: column; gap: 14px;
     box-shadow: var(--shadow-soft);
+    z-index: 99;
   }
   .mobile-menu a {
     text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500;
     color: var(--color-text);
   }
+  .mobile-menu .btn { width: 100%; justify-content: center; }
 }
 
 /* ------------ Hero / Slider ------------ */
@@ -861,3 +886,166 @@ img { max-width: 100%; display: block; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-8 { margin-bottom: 2rem; }
 .row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ==========================================================
+   MOBILE RESPONSIVENESS — comprehensive overrides
+========================================================== */
+
+/* Tablet & smaller */
+@media (max-width: 980px) {
+  .section { padding: 60px 0; }
+  .section.tight { padding: 40px 0; }
+  .section-head { margin-bottom: 36px; }
+  .container { padding: 0 18px; }
+
+  /* Hero */
+  .hero { height: clamp(480px, 80vh, 700px); }
+  .hero-content { padding: 0 20px; }
+  .hero-content .eyebrow { font-size: 1rem; letter-spacing: 1.2px; }
+  .hero-content h1 { font-size: clamp(1.7rem, 6vw, 3rem); line-height: 1.15; }
+  .hero-content p { font-size: 0.96rem; }
+  .hero-nav { width: 38px; height: 38px; }
+  .hero-nav.prev { left: 10px; }
+  .hero-nav.next { right: 10px; }
+
+  /* Buttons */
+  .btn { padding: 11px 20px; font-size: 0.84rem; letter-spacing: 0.4px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { padding: 11px 18px; font-size: 0.82rem; }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  .section { padding: 48px 0; }
+  .section.tight { padding: 32px 0; }
+  .section-head { margin-bottom: 28px; }
+  .section-head .divider { width: 80px; }
+  .container { padding: 0 16px; }
+
+  /* Topbar — compact, hide office address spans on phone */
+  .topbar { font-size: 0.78rem; padding: 8px 0; }
+  .topbar .container { gap: 8px; justify-content: center; }
+  .topbar .left, .topbar .right { gap: 10px; }
+  .topbar .left .hide-sm { display: none; }
+  .topbar .left { flex: 1; min-width: 0; justify-content: center; }
+  .topbar .right { justify-content: center; flex-wrap: wrap; }
+
+  /* Hero */
+  .hero { height: clamp(440px, 78vh, 600px); }
+  .hero-content .eyebrow { font-size: 0.9rem; margin-bottom: 8px; }
+  .hero-content h1 { font-size: clamp(1.5rem, 7vw, 2.4rem); margin-bottom: 12px; }
+  .hero-content p { font-size: 0.9rem; margin-bottom: 22px; }
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; margin: 0 auto; }
+  .hero-actions .btn { width: 100%; padding: 13px 20px; font-size: 0.85rem; }
+  .hero-nav { width: 34px; height: 34px; }
+  .hero-dots { bottom: 16px; }
+  .hero-dots button { width: 9px; height: 9px; }
+
+  /* Buttons — mobile friendly */
+  .btn { padding: 12px 20px; font-size: 0.82rem; min-height: 44px; }
+  .btn svg { flex-shrink: 0; }
+
+  /* Booking widget — stack and lift away from hero */
+  .booking-widget {
+    grid-template-columns: 1fr 1fr;
+    margin-top: -24px;
+    padding: 16px;
+    gap: 12px;
+    border-top-width: 3px;
+  }
+  .booking-widget label { font-size: 0.7rem; letter-spacing: 0.6px; }
+  .booking-widget input,
+  .booking-widget select { padding: 9px 10px; font-size: 0.92rem; }
+  .booking-widget .btn-wrap { grid-column: 1 / -1; }
+  .booking-widget .btn { width: 100%; height: 46px; padding: 12px 16px; font-size: 0.82rem; }
+
+  /* About / why grids */
+  .about-grid, .why-grid, .pool-section .grid { gap: 28px; }
+  .about-images { gap: 12px; }
+  .about-images .img-1, .about-images .img-2 { height: 210px; margin-top: 0; }
+  .about-content h2, .pool-section h2, .why-grid .text h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+  /* Facility cards */
+  .facility-card .body { padding: 18px; }
+  .facility-card h3 { font-size: 1.2rem; }
+
+  /* Rooms grid */
+  .room-card .body { padding: 18px; }
+  .room-card h3 { font-size: 1.2rem; }
+  .room-card .meta { gap: 10px; font-size: 0.78rem; flex-wrap: wrap; }
+  .room-card .actions { flex-direction: column; }
+  .room-card .actions .btn { width: 100%; }
+
+  /* Amenities */
+  .amenities { gap: 10px; }
+  .amenity { padding: 12px 14px; font-size: 0.88rem; }
+
+  /* Feature groups */
+  .feature-group { padding: 22px; }
+  .feature-group h3 { font-size: 1.1rem; }
+  .feature-group ul li { font-size: 0.88rem; padding: 6px 0 6px 22px; }
+
+  /* Testimonials */
+  .testimonial { padding: 28px 22px; }
+  .testimonial .avatar { width: 70px; height: 70px; margin: -60px auto 12px; }
+  .testimonial .text { font-size: 0.94rem; }
+
+  /* Gallery lightbox */
+  .gallery-grid { gap: 10px; }
+  .lightbox { padding: 16px; }
+  .lightbox .close, .lightbox .nav { width: 40px; height: 40px; }
+  .lightbox .close { top: 14px; right: 14px; }
+  .lightbox .nav.prev { left: 10px; }
+  .lightbox .nav.next { right: 10px; }
+
+  /* Page header */
+  .page-header { height: 240px; }
+  .page-header h1 { font-size: clamp(1.6rem, 6.5vw, 2.4rem); }
+  .page-header .crumbs { font-size: 0.82rem; }
+
+  /* Room detail */
+  .room-detail-grid { gap: 30px; }
+  .room-sidebar { padding: 20px; }
+  .room-sidebar .price { font-size: 1.7rem; }
+  .feature-pills span { font-size: 0.78rem; padding: 6px 12px; }
+
+  /* Contact cards */
+  .contact-card { padding: 22px; }
+  .contact-card h3 { font-size: 1.1rem; }
+  .contact-card .icon-circle { width: 56px; height: 56px; }
+
+  /* Forms */
+  .form-control input,
+  .form-control select,
+  .form-control textarea { padding: 11px 12px; font-size: 0.95rem; }
+  .form-control textarea { min-height: 110px; }
+  .form-control label { font-size: 0.76rem; }
+
+  /* Filter pills on rooms page */
+  [data-testid="rooms-filter"] { gap: 6px; }
+  [data-testid="rooms-filter"] .btn { padding: 8px 14px !important; font-size: 0.72rem !important; min-height: 38px; }
+
+  /* WhatsApp FAB */
+  .wa-fab { width: 52px; height: 52px; bottom: 16px; right: 16px; }
+  .wa-fab svg { width: 24px; height: 24px; }
+
+  /* Footer */
+  .footer { padding: 50px 0 18px; }
+  .footer h4 { font-size: 1.1rem; }
+  .footer .brand img { height: 56px; }
+
+  /* 404 */
+  .notfound { padding: 80px 18px; }
+  .notfound h1 { font-size: 4.5rem; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .hero-content h1 { font-size: 1.4rem; }
+  .booking-widget { grid-template-columns: 1fr; }
+  .hero-actions { max-width: 100%; }
+  .nav-logo img { height: 38px; width: 38px; }
+  .nav-logo .brand-name { font-size: 0.95rem; }
+  .nav-logo .brand-sub { font-size: 0.55rem; }
+}

@@ -42,7 +42,7 @@ export default function Navbar() {
             href={waUrl(BOOK_MSG)}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-primary show-mobile"
+            className="btn btn-primary nav-book-btn"
             data-testid="book-now-btn"
           >
             <MessageCircle size={16} /> Book Now

@@ -21,7 +21,7 @@ export const SITE = {
 
 export const HERO_SLIDES = [
   {
-    image: "https://alcazarfort.pk/wp-content/uploads/2018/12/Hotel-in-naran-best-hotel-price-of-roomsWhatsApp-Image-2022-06-05-at-7.54.29-PM.jpeg",
+    image: "https://customer-assets.emergentagent.com/job_images-60/artifacts/p0h7mnet_Why%20Choose%20Us.jpeg",
     eyebrow: "Welcome to Al-Cazar Fort",
     title: "A Luxury Retreat in the Heart of Naran Valley",
     subtitle: "Hilltop views, riverside calm and warm hospitality \u2014 your perfect mountain escape."
