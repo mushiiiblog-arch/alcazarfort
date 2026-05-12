@@ -28,13 +28,7 @@ export default function Rooms() {
           </div>
 
           <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 8,
-              flexWrap: "wrap",
-              marginBottom: 32,
-            }}
+            className="rooms-filter-bar"
             data-testid="rooms-filter"
           >
             {ROOM_CATEGORIES.map((cat) => (
@@ -42,7 +36,6 @@ export default function Rooms() {
                 key={cat}
                 onClick={() => setActive(cat)}
                 className={`btn ${active === cat ? "btn-dark" : "btn-ghost"}`}
-                style={{ padding: "10px 20px", fontSize: "0.82rem" }}
                 data-testid={`filter-${cat.toLowerCase().replace(/ /g, "-")}`}
               >
                 {cat}
