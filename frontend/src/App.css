@@ -303,7 +303,7 @@ img { max-width: 100%; display: block; }
 .hero-nav.next { right: 22px; }
 .hero-dots {
   position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 10px; z-index: 3;
+  display: flex; gap: 10px; z-index: 20;
 }
 .hero-dots button {
   width: 11px; height: 11px; border-radius: 50%;
