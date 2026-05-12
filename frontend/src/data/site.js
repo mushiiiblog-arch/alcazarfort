@@ -147,6 +147,11 @@ export const FEATURE_GROUPS = [
 ];
 
 export const GALLERY_IMAGES = [
+  "https://customer-assets.emergentagent.com/job_images-60/artifacts/5n4ws46t_alcazarfort%20%281%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_images-60/artifacts/qhu723a9_alcazarfort%20%286%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_images-60/artifacts/xtfv91nf_alcazarfort%20%287%29.jpeg",
+  "https://customer-assets.emergentagent.com/job_images-60/artifacts/4lnx90lf_Why%20Choose%20Us.jpeg",
+  "https://customer-assets.emergentagent.com/job_images-60/artifacts/tdxazwwa_Why%20Choose%20Us%202.jpeg",
   "https://alcazarfort.pk/wp-content/uploads/2018/12/best-hotel-in-naran-kaghan-room-in-naranWhatsApp-Image-2022-05-22-at-11.40.39-PM.jpeg",
   "https://alcazarfort.pk/wp-content/uploads/2018/12/best-hotel-in-naran-kaghan-room-in-naranWhatsApp-Image-2022-05-22-at-11.36.36-PM.jpeg",
   "https://alcazarfort.pk/wp-content/uploads/2015/02/WhatsApp-Image-2022-05-25-at-9.01.20-PM.jpeg",

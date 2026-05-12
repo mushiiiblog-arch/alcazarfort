@@ -20,7 +20,7 @@ export default function WhyChooseUs() {
             <MessageCircle size={16} /> Make a Reservation
           </a>
         </div>
-        <img src="https://alcazarfort.pk/wp-content/uploads/2018/12/Hotel-in-naran-best-hotel-price-of-roomsWhatsApp-Image-2022-06-05-at-7.54.30-PM-2.jpeg" alt="Al-Cazar Fort" />
+        <img src="https://customer-assets.emergentagent.com/job_images-60/artifacts/4lnx90lf_Why%20Choose%20Us.jpeg" alt="Al-Cazar Fort hotel with pool and mountain view" />
       </div>
     </section>
   );

@@ -9,13 +9,13 @@ export default function AboutSection() {
         <div className="about-images">
           <img
             className="frame img-1"
-            src="https://alcazarfort.pk/wp-content/uploads/2018/12/best-hotel-in-naran-kaghan-room-in-naranWhatsApp-Image-2022-05-22-at-11.40.39-PM.jpeg"
-            alt="Al-Cazar Fort exterior"
+            src="https://customer-assets.emergentagent.com/job_images-60/artifacts/tdxazwwa_Why%20Choose%20Us%202.jpeg"
+            alt="Al-Cazar Fort staff with mountain pool"
           />
           <img
             className="frame img-2"
-            src="https://alcazarfort.pk/wp-content/uploads/2015/02/WhatsApp-Image-2022-05-25-at-9.01.20-PM.jpeg"
-            alt="Hotel grounds"
+            src="https://customer-assets.emergentagent.com/job_images-60/artifacts/4lnx90lf_Why%20Choose%20Us.jpeg"
+            alt="Al-Cazar Fort hotel exterior with pool"
           />
         </div>
         <div className="about-content">
