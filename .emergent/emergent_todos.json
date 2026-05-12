@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Phase 1: Build backend endpoints (booking inquiry, contact form)",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 2: Build frontend - layout (Navbar, Footer, Topbar)",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 3: Build Home page with all sections",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 4: Build About, Rooms, Gallery, Restaurant, Activities, Contact pages",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 5: Add styles, routing, and verify no console errors",
+    "status": "completed"
+  },
+  {
+    "content": "Phase 6: Test end-to-end with testing agent",
+    "status": "in_progress"
+  }
+]
