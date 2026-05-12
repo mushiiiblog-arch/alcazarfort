@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
 import { Mountain, Bike, Sparkles, Users, Camera, Music } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { SITE } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
+
+const MSG = "Hello Al-Cazar Fort, I would like to plan an adventure during my stay. Please share more details about activities and tours.";
 
 const ACTIVITIES = [
   { icon: Mountain, title: "Mountain Hiking", text: "Guided hikes through the breathtaking mountains and valleys of Naran and Kaghan." },
   { icon: Bike, title: "Jeep Rides", text: "Adventure-packed jeep safaris to Saif-ul-Malook, Lulusar and beyond." },
   { icon: Sparkles, title: "Paragliding", text: "Soar high above the valley with experienced paragliding instructors." },
   { icon: Users, title: "Indoor Games", text: "Snooker, pool, table tennis and family games available on-site." },
-  { icon: Camera, title: "Photography Tours", text: "Capture sunrise and sunset moments at the valley’s most scenic spots." },
+  { icon: Camera, title: "Photography Tours", text: "Capture sunrise and sunset moments at the valley\u2019s most scenic spots." },
   { icon: Music, title: "Cultural Events", text: "Enjoy traditional music nights and local cultural performances." }
 ];
 
@@ -42,7 +45,9 @@ export default function Activities() {
           </div>
 
           <div className="text-center mt-8">
-            <Link to="/contact" className="btn btn-primary">Plan Your Adventure</Link>
+            <a href={waUrl(MSG)} target="_blank" rel="noreferrer" className="btn btn-primary">
+              <MessageCircle size={16} /> Plan Your Adventure
+            </a>
           </div>
         </div>
       </section>

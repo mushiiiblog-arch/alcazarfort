@@ -1,6 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
 import { ACCENT, SITE, FEATURE_GROUPS } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
+
+const MSG = "Hello Al-Cazar Fort, I would like to reserve a stay. Please share availability and details.";
 
 export default function PoolSection() {
   return (
@@ -14,7 +17,9 @@ export default function PoolSection() {
             <img className="divider" src={SITE.divider} alt="" aria-hidden="true" style={{ width: 100 }} />
             <p><strong>Al-Cazar Fort</strong> proudly introduces the first hot-water pool in Naran for its customers. Set in a beautiful garden, our large pool can be used for vigorous laps or simply for relaxing with a swim under the trees.</p>
             <p>Lounge in the shade or bask in the sun — either way, our peaceful Jheel Road location guarantees a refreshing escape from the heat.</p>
-            <Link to="/booking" className="btn btn-dark">Reserve Your Stay</Link>
+            <a href={waUrl(MSG)} target="_blank" rel="noreferrer" className="btn btn-dark">
+              <MessageCircle size={16} /> Reserve Your Stay
+            </a>
           </div>
         </div>
       </section>

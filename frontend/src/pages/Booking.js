@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios";
 import { toast } from "sonner";
-import { Calendar, Users, Send } from "lucide-react";
+import { Calendar, Users, MessageCircle } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { ROOMS, SITE } from "@/data/site";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { waUrl, formatBookingMessage } from "@/utils/whatsapp";
 
 function today(offset = 0) {
   const d = new Date();
@@ -28,7 +26,6 @@ export default function Booking() {
     room_type: params.get("room_type") || "",
     message: "",
   });
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const rt = params.get("room_type");
@@ -37,27 +34,15 @@ export default function Booking() {
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    if (!form.name || !form.email) {
-      toast.error("Please provide name and email");
+    if (!form.name) {
+      toast.error("Please enter your name");
       return;
     }
-    try {
-      setLoading(true);
-      await axios.post(`${API}/bookings`, {
-        ...form,
-        adults: parseInt(form.adults),
-        children: parseInt(form.children),
-        rooms: parseInt(form.rooms),
-      });
-      toast.success("Booking inquiry received! Our team will contact you to confirm.");
-      setForm({ ...form, name: "", email: "", phone: "", message: "" });
-    } catch (err) {
-      toast.error("Failed to submit. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    const msg = formatBookingMessage(form);
+    window.open(waUrl(msg), "_blank", "noopener,noreferrer");
+    toast.success("Opening WhatsApp with your booking details...");
   };
 
   return (
@@ -67,9 +52,9 @@ export default function Booking() {
         <div className="container" style={{ maxWidth: 1000 }}>
           <div className="section-head">
             <div className="eyebrow">Reservation</div>
-            <h2>Reserve Your Room</h2>
+            <h2>Reserve Your Room via WhatsApp</h2>
             <img className="divider" src={SITE.divider} alt="" />
-            <p>Complete the form below and our reservations team will contact you to confirm availability and pricing.</p>
+            <p>Fill in the details below and we will open WhatsApp with your enquiry pre-filled. Our reservations team typically replies within minutes.</p>
           </div>
 
           <form onSubmit={submit} data-testid="booking-form">
@@ -79,8 +64,8 @@ export default function Booking() {
                 <input name="name" value={form.name} onChange={onChange} required data-testid="book-name" />
               </div>
               <div className="form-control">
-                <label>Email *</label>
-                <input type="email" name="email" value={form.email} onChange={onChange} required data-testid="book-email" />
+                <label>Email</label>
+                <input type="email" name="email" value={form.email} onChange={onChange} data-testid="book-email" />
               </div>
               <div className="form-control">
                 <label>Phone</label>
@@ -90,7 +75,7 @@ export default function Booking() {
                 <label>Room Type</label>
                 <select name="room_type" value={form.room_type} onChange={onChange} data-testid="book-room-type">
                   <option value="">Any room</option>
-                  {ROOMS.map((r) => <option key={r.slug} value={r.slug}>{r.name}</option>)}
+                  {ROOMS.map((r) => <option key={r.slug} value={r.name}>{r.name}</option>)}
                 </select>
               </div>
               <div className="form-control">
@@ -124,8 +109,8 @@ export default function Booking() {
                 <textarea name="message" value={form.message} onChange={onChange} placeholder="Tell us about any special requirements..." data-testid="book-message" />
               </div>
               <div className="full" style={{ textAlign: "center" }}>
-                <button type="submit" className="btn btn-primary" disabled={loading} data-testid="book-submit">
-                  {loading ? "Submitting..." : (<><Send size={16} /> Submit Booking</>)}
+                <button type="submit" className="btn btn-primary" data-testid="book-submit">
+                  <MessageCircle size={16} /> Send Booking on WhatsApp
                 </button>
               </div>
             </div>

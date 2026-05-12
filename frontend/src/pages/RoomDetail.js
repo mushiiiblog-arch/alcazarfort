@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Users, Maximize2, BedDouble, Check } from "lucide-react";
+import { Users, Maximize2, BedDouble, Check, Bath, MessageCircle } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { ROOMS, SITE } from "@/data/site";
+import { waUrl, formatRoomBookingMessage } from "@/utils/whatsapp";
 
 export default function RoomDetail() {
   const { slug } = useParams();
@@ -62,14 +63,23 @@ export default function RoomDetail() {
             <div className="price">Rs {room.priceFrom.toLocaleString()} <span style={{ fontSize: 14, color: "var(--color-text-muted)" }}>/ night</span></div>
             <hr />
             <div className="row" style={{ color: "var(--color-text-muted)", fontSize: 14 }}>
+              <span><BedDouble size={14} /> {room.beds} beds</span>
+              <span><Bath size={14} /> {room.bathrooms} bath</span>
+              <span><Maximize2 size={14} /> {room.sizeSqft} ft²</span>
               <span><Users size={14} /> {room.maxAdults} adults</span>
-              <span><BedDouble size={14} /> 1 bed</span>
-              <span><Maximize2 size={14} /> {room.sizeSqm}m²</span>
             </div>
             <hr />
-            <p style={{ color: "var(--color-text-muted)", fontSize: 14 }}>Book online or contact us directly for special requests and group rates.</p>
+            <p style={{ color: "var(--color-text-muted)", fontSize: 14 }}>Book directly via WhatsApp for the fastest response and any special requests.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Link to={`/booking?room_type=${room.slug}`} className="btn btn-primary" data-testid="detail-book-btn">Book this Room</Link>
+              <a
+                href={waUrl(formatRoomBookingMessage(room))}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-primary"
+                data-testid="detail-book-btn"
+              >
+                <MessageCircle size={16} /> Book this Room
+              </a>
               <Link to="/contact" className="btn btn-ghost">Contact Us</Link>
             </div>
           </aside>

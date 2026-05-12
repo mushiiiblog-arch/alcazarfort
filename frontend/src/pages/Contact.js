@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { toast } from "sonner";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Send, MessageCircle } from "lucide-react";
+import axios from "axios";
 import PageHeader from "@/components/PageHeader";
 import { SITE } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -30,6 +31,19 @@ export default function Contact() {
     }
   };
 
+  const whatsappQuick = () => {
+    const msg = [
+      "Hello Al-Cazar Fort,",
+      "",
+      form.name && `Name: ${form.name}`,
+      form.email && `Email: ${form.email}`,
+      form.phone && `Phone: ${form.phone}`,
+      form.subject && `Subject: ${form.subject}`,
+      form.message && `\n${form.message}`,
+    ].filter(Boolean).join("\n");
+    window.open(waUrl(msg || "Hello Al-Cazar Fort, I would like to get in touch."), "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div data-testid="contact-page">
       <PageHeader title="Get in Touch" crumbs={[{ label: "Contact" }]} />
@@ -40,13 +54,13 @@ export default function Contact() {
             <div className="contact-card">
               <div className="icon-circle"><MapPin size={26} /></div>
               <h3>Visit Us</h3>
-              <p>{SITE.address}</p>
-              <p>{SITE.officeAddress}</p>
+              <p><a href={SITE.mapsLink} target="_blank" rel="noreferrer">{SITE.address}</a></p>
             </div>
             <div className="contact-card">
               <div className="icon-circle"><Phone size={26} /></div>
               <h3>Call Us</h3>
               {SITE.phones.map((p) => <p key={p}><a href={`tel:${p}`}>{p}</a></p>)}
+              <p><a href={waUrl("Hello Al-Cazar Fort")} target="_blank" rel="noreferrer" style={{ color: "#25d366" }}><MessageCircle size={14} style={{ verticalAlign: "-2px" }} /> WhatsApp Us</a></p>
             </div>
             <div className="contact-card">
               <div className="icon-circle"><Mail size={26} /></div>
@@ -87,9 +101,12 @@ export default function Contact() {
                 <label>Message *</label>
                 <textarea name="message" value={form.message} onChange={onChange} required data-testid="contact-message" />
               </div>
-              <div className="full" style={{ textAlign: "center" }}>
+              <div className="full" style={{ textAlign: "center", display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                 <button type="submit" className="btn btn-primary" disabled={loading} data-testid="contact-submit">
                   {loading ? "Sending..." : (<><Send size={16} /> Send Message</>)}
+                </button>
+                <button type="button" onClick={whatsappQuick} className="btn btn-dark" data-testid="contact-whatsapp">
+                  <MessageCircle size={16} /> Send via WhatsApp
                 </button>
               </div>
             </div>
@@ -97,13 +114,14 @@ export default function Contact() {
         </div>
       </section>
 
-      <section style={{ height: 380 }}>
+      <section style={{ height: 450 }}>
         <iframe
-          title="Al-Cazar Fort location"
-          src="https://maps.google.com/maps?q=Naran%20Pakistan&t=&z=12&ie=UTF8&iwloc=&output=embed"
+          title="Al-Cazar Fort - Hotel & Restaurant Location"
+          src={SITE.mapsEmbed}
           style={{ border: 0, width: "100%", height: "100%" }}
           loading="lazy"
           allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
         />
       </section>
     </div>

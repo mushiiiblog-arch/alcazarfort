@@ -8,7 +8,10 @@ export default function Topbar() {
       <div className="container">
         <div className="left">
           <span><Mail size={14} style={{ verticalAlign: "-2px", marginRight: 6 }} /> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></span>
-          <span className="hide-sm"><MapPin size={14} style={{ verticalAlign: "-2px", marginRight: 6 }} /> {SITE.officeAddress}</span>
+          <span className="hide-sm">
+            <MapPin size={14} style={{ verticalAlign: "-2px", marginRight: 6 }} />
+            <a href={SITE.mapsLink} target="_blank" rel="noreferrer">{SITE.address}</a>
+          </span>
         </div>
         <div className="right">
           {SITE.phones.map((p) => (

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { SITE } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -12,6 +13,8 @@ const LINKS = [
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
 ];
+
+const BOOK_MSG = "Hello Al-Cazar Fort, I would like to book a room. Please share availability and details.";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -35,7 +38,15 @@ export default function Navbar() {
         </div>
 
         <div className="nav-cta">
-          <Link to="/booking" className="btn btn-primary show-mobile" data-testid="book-now-btn">Book Now</Link>
+          <a
+            href={waUrl(BOOK_MSG)}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary show-mobile"
+            data-testid="book-now-btn"
+          >
+            <MessageCircle size={16} /> Book Now
+          </a>
           <button className="nav-toggle" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" data-testid="nav-toggle">
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -48,7 +59,15 @@ export default function Navbar() {
                 {l.label}
               </NavLink>
             ))}
-            <Link to="/booking" className="btn btn-primary" onClick={() => setOpen(false)}>Book Now</Link>
+            <a
+              href={waUrl(BOOK_MSG)}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary"
+              onClick={() => setOpen(false)}
+            >
+              <MessageCircle size={16} /> Book Now
+            </a>
           </div>
         )}
       </div>

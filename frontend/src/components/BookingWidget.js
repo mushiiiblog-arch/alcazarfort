@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Calendar, Search } from "lucide-react";
+import { Calendar, MessageCircle } from "lucide-react";
+import { waUrl, formatBookingMessage } from "@/utils/whatsapp";
 
 function today(offset = 0) {
   const d = new Date();
@@ -9,7 +9,6 @@ function today(offset = 0) {
 }
 
 export default function BookingWidget() {
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     check_in: today(0),
     check_out: today(1),
@@ -21,8 +20,8 @@ export default function BookingWidget() {
 
   const submit = (e) => {
     e.preventDefault();
-    const params = new URLSearchParams(form).toString();
-    navigate(`/booking?${params}`);
+    const msg = formatBookingMessage(form);
+    window.open(waUrl(msg), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -55,7 +54,7 @@ export default function BookingWidget() {
       </div>
       <div className="field btn-wrap">
         <button type="submit" className="btn btn-primary" data-testid="bw-submit">
-          <Search size={16} /> Check Availability
+          <MessageCircle size={16} /> Check Availability
         </button>
       </div>
     </form>

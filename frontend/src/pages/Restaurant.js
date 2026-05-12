@@ -1,8 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { MessageCircle } from "lucide-react";
 import { Utensils, Coffee, Sun, Wine } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import { SITE } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
+
+const MSG = "Hello Al-Cazar Fort, I would like to reserve a table at your restaurant. Please share availability.";
 
 export default function Restaurant() {
   return (
@@ -21,7 +24,9 @@ export default function Restaurant() {
             <img className="divider" src={SITE.divider} alt="" />
             <p>Al-Cazar Fort offers a variety of delicious cuisines for our guests — catering for breakfast, lunch and evening meals. The grand terrace on the rooftop provides the perfect alfresco dining experience.</p>
             <p>Our restaurant offers <strong>Pakistani, Chinese and other Asian desi foods</strong>, prepared by experienced chefs using fresh, local ingredients sourced from the valley.</p>
-            <Link to="/booking" className="btn btn-dark">Reserve a Table</Link>
+            <a href={waUrl(MSG)} target="_blank" rel="noreferrer" className="btn btn-dark">
+              <MessageCircle size={16} /> Reserve a Table
+            </a>
           </div>
         </div>
       </section>

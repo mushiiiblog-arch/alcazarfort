@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { HERO_SLIDES } from "@/data/site";
+import { waUrl } from "@/utils/whatsapp";
+
+const BOOK_MSG = "Hello Al-Cazar Fort, I would like to book my stay. Please share availability and pricing.";
 
 export default function HeroSlider() {
   const [idx, setIdx] = useState(0);
@@ -27,7 +30,9 @@ export default function HeroSlider() {
               <h1>{s.title}</h1>
               <p>{s.subtitle}</p>
               <div className="hero-actions">
-                <Link to="/booking" className="btn btn-primary" data-testid="hero-book-btn">Book Your Stay</Link>
+                <a href={waUrl(BOOK_MSG)} target="_blank" rel="noreferrer" className="btn btn-primary" data-testid="hero-book-btn">
+                  <MessageCircle size={16} /> Book Your Stay
+                </a>
                 <Link to="/rooms" className="btn btn-outline">Explore Rooms</Link>
               </div>
             </div>
